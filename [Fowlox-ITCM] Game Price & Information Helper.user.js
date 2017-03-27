@@ -162,18 +162,23 @@ function loadData(tooltip,app,id){
     var name = app.getElementsByClassName("name")[0].textContent;
     jQuery(tooltip).append('<img class="tooltipImageHeader" src="http://cdn.akamai.steamstatic.com/steam/apps/'+id+'/header.jpg" alt=""><div class="container"><h4>'+name+'</h4><p>불러오는 중...</p></div>');
     url = "//api.isthereanydeal.com/v02/game/plain/?key=397b5c0da6342ca3e136345f2711ce060314a122&shop=steam&game_id=app%2F"+id+"&callback=?";
-    // jQuery.getJSON(url,{
-    //     dataType :"jsonp",
-    //     jsonp: false,
-    //     jsonpCallback: "myJsonMethod",
-    //     success : function(data){
-    //         console.log("done");
-    //         console.log(data);
-    //     },
-    //     error : function(httpReq,status,exception){
-    //         console.log(status+" "+exception);
-    //     }
-    // });
+    var request = "";
+    if (id) { request += "&game_id="+encodeURIComponent(id); }
+    if (request == "") {return;}
+
+    GM_xmlhttpRequest({
+        method: "GET",
+        url: "http://api.isthereanydeal.com/v02/game/plain/?key=" + app.apikey + "&shop=" + page.shop + request,
+        onload: function(response) {
+            var data = JSON.parse(response.responseText);
+            if (!data.error && data['.meta'].match !== false) {
+                console.log(data.data.plain);
+                ref.plain = data.data.plain;
+                ref.status.plain = true;
+                ref._checkOwnership();
+            }
+        }
+    });
 }
 var sheet = (function(){
     var style = document.createElement("style");
