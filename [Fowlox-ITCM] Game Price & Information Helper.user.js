@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         [Fowlox-ITCM] Game Price & Information Helper
 // @namespace    Fowlox
-// @version      0.1
+// @version      0.1.1
 // @description  게임 목록에서 최저가 및 기타 정보를 확인 X)
 // @author       Fowlox
 // @icon         http://itcm.co.kr/files/attach/xeicon/favicon.ico
