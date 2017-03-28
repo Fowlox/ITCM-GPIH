@@ -248,6 +248,8 @@ var app = {
             itcmGameListElement : itcmGameListElement,
             loadTooltip : function(){
                 this.itcmGameListElement.appendChild(this.tooltip);
+                this.tooltip.style.top = (this.tooltip.offsetTop+49)+"px";
+                this.tooltip.style.left = (this.tooltip.offsetLeft-400)+"px";
             }
         };
         game.title = game.itcmGameListElement.getElementsByClassName("name")[0].textContent;
@@ -302,7 +304,7 @@ var app = {
         var sheet = getSheet();
         sheet.insertRule(".no_mi_app {position:relative;}");
         sheet.insertRule(".mi_app {position:relative;}");
-        sheet.insertRule(".GPIH_infoTooltip {width: 400px; left: -360px; background-color:#F5F5F5; border-radius: 6px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); position: absolute; z-index: 1; visibility: hidden;}");
+        sheet.insertRule(".GPIH_infoTooltip {width: 400px; right: auto; background-color:#F5F5F5; border-radius: 6px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); position: absolute; z-index: 1; visibility: hidden;}");
         sheet.insertRule(".no_mi_app:hover .GPIH_infoTooltip {visibility:visible}");
         sheet.insertRule(".mi_app:hover .GPIH_infoTooltip {visibility:visible}");
         sheet.insertRule(".GPIH_infoTooltip:hover {visibility:visible; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2)}");
