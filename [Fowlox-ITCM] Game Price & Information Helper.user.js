@@ -29,6 +29,9 @@ var itad = {
                     if(!!this.price&!!this.historical&!!this.bundles&!!this.info&!this._lock){
                         this._lock = true;
                         console.log(this);
+                        jQuery(game.itad).append('<p><a href="'+this.price.lowest.url+'" target="_blank">현재 최저가: <span class="lowest_store clickable">'+this.price.lowest.shop.name+'</span> <span class="'+((this.price.lowest.price_new<this.historical.price)?"GPIH_newHistorical":((this.price.lowest.price_new===this.historical.price)?"GPIH_sameHistorical":""))+'">$'+this.price.lowest.price_new+'(-'+this.price.lowest.price_cut+'%)</span></a></p>');
+                        jQuery(game.itad).append('<p><a href="'+this.historical.url+'" target="_blank">역대 최저가: <span class="clickable">'+this.historical.shop+'</span> $'+this.historical.price+'(-'+this.historical.cut+'%) '+this.historical.date+'</a></p>');
+                        jQuery(game.itad).append('<p><a href="'+this.bundles.url+'" target="_blank">번들 횟수: <span class="GPIH_count'+this.bundles.count+'">'+this.bundles.count+'</span></a></p>');
                     }
                 },
                 _lock : false,
@@ -312,8 +315,10 @@ var app = {
         sheet.insertRule(".GPIH_container {padding: 2px 16px;}");
         sheet.insertRule(".GPIH_tooltipWraper {text-align:center;}");
         sheet.insertRule(".GPIH_itad {text-align:left; border: 1px solid; border-color: #BDBDBD; border-radius: 3px;}");
-        sheet.insertRule(".count_0 {color:#81C784}");
-        sheet.insertRule(".clickable {font-weight:bold;color:#448AFF}");
+        sheet.insertRule(".GPIH_newHistorical {color: #D50000}");
+        sheet.insertRule(".GPIH_sameHistorical {color: #0091EA}");
+        sheet.insertRule(".GPIH_count0 {color:#00C853}");
+        sheet.insertRule(".clickable {font-weight:bold;}");
         sheet.insertRule(".itadButton {border: none;outline: 0;display: inline-block;padding: 8px; color: white;background-color: #000;text-align: center;cursor: pointer;width: 100%;font-size: 18px;}");
         sheet.insertRule(".itadButton:hover, .clickable:hover {opacity: 0.7;}");
         sheet.insertRule("@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }");
